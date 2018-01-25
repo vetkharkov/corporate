@@ -136,8 +136,24 @@
 
         <!-- START SLIDER -->
     @yield('slider')
+    <!-- END SLIDER -->
 
-    <!-- START PRIMARY -->
+        <!-- START PRIMARY -->
+        <div id="primary" class="sidebar-right">
+            <div class="inner group">
+                <!-- START CONTENT -->
+                @yield('content')
+                <!-- END CONTENT -->
+
+                <!-- START SIDEBAR -->
+
+                <!-- END SIDEBAR -->
+                <!-- START EXTRA CONTENT -->
+
+                <!-- END EXTRA CONTENT -->
+            </div>
+        </div>
+        <!-- END PRIMARY -->
 
         <!-- START COPYRIGHT -->
         <div id="copyright">

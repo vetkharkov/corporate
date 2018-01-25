@@ -8,9 +8,19 @@
 //
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/','IndexController',[
-    'only'  => ['index'],//список методов в контроллере
+Route::resource('/', 'IndexController', [
+    'only' => ['index'],//список методов в контроллере
     'names' => [
-        'index'=>'home'//имя роута(маршрута)
+        'index' => 'home'//имя роута(маршрута)
     ]
+]);
+
+Route::resource('portfolios', 'PortfolioController', [
+
+    'parameters' => [
+
+        'portfolios' => 'alias'
+
+    ]
+
 ]);

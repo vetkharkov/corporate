@@ -17,3 +17,8 @@
 @section('bar')
     {!! $rightBar !!}
 @endsection
+
+{{--переопределяем секцию COPYRIGHT FOOTER --}}
+@section('footer')
+    {!! $footer !!}
+@endsection

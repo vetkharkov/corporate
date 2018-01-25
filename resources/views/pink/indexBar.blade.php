@@ -1,7 +1,7 @@
 <div class="widget-first widget recent-posts">
 
     @if($articles)
-        <h3>Статьи блога</h3>
+        <h3>{{ trans('title.from_blog') }}</h3>
         <div class="recent-post group">
 
             @foreach($articles as $article)

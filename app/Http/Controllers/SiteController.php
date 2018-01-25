@@ -15,6 +15,9 @@ class SiteController extends Controller
     protected $a_rep;//свойство для хранения класса объекта articles репозитория
     protected $m_rep;//свойство для хранения класса объекта меню репозитория
 
+    protected $keywords;
+    protected $meta_desc;
+    protected $title;
 
     protected $template;//имя шаблона для хранения информации для отображения страницы
 
@@ -23,7 +26,16 @@ class SiteController extends Controller
     protected $contentRightBar = FALSE;//свойстро хранения информации
     protected $contentLeftBar = FALSE;//контента сайтбара
 
-    protected $bar = FALSE;//информация о сайтбаре FALSE-нет сайтбара
+
+    /*
+    |--------------------------------------------------------------------------
+    | информация о сайтбаре в классе 'sidebar-no' файла site.blade.php
+    | no - нет сайтбара по умолчанию, переопределяется в дочерних классах
+    | left - левый сайтбар
+    | right - правый сайтбар
+    |--------------------------------------------------------------------------
+    */
+    protected $bar = 'no';
 
 
     public function __construct(MenusRepository $m_rep)
@@ -47,8 +59,19 @@ class SiteController extends Controller
 
         if($this->contentRightBar) {
             $rightBar = view(env('THEME').'.rightBar')->with('content_rightBar',$this->contentRightBar)->render();
-            $this->vars = array_add($this->vars,'rightBar',$rightBar);
+            $this->vars = array_add($this->vars,'rightBar', $rightBar);
         }
+
+        $this->vars = array_add($this->vars, 'bar', $this->bar);
+
+        $this->vars = array_add($this->vars, 'keywords', $this->keywords);
+        $this->vars = array_add($this->vars, 'meta_desc', $this->meta_desc);
+        $this->vars = array_add($this->vars, 'title', $this->title);
+
+
+        $footer = view(env('THEME').'.footer')->render();
+        $this->vars = array_add($this->vars, 'footer', $footer);
+
         return view($this->template)->with($this->vars);
     }
 

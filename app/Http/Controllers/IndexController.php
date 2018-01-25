@@ -23,6 +23,7 @@ class IndexController extends SiteController
         $this->a_rep = $a_rep;//articles статьи
 
         $this->bar = 'right';//правый сайтбар
+
         $this->template = env('THEME') . '.index';//pink.index (views/pink/index.blade.php)
 
     }
@@ -39,6 +40,11 @@ class IndexController extends SiteController
 
         $sliders = view(env('THEME') . '.slider')->with('sliders', $sliderItems)->render();
         $this->vars = array_add($this->vars, 'sliders', $sliders);
+
+        $this->keywords = 'ключевые слова';
+        $this->meta_desc = 'мета тэги';
+        $this->title = 'Home_page';
+
 
 
         $articles = $this->getArticles();

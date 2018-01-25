@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         // создаём новую директиву blade
         // для присваивания значения переменной без отображения на странице
         // @set($i,10)

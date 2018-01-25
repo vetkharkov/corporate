@@ -12,3 +12,8 @@
 @section('content')
     {!! $content !!}
 @endsection
+
+{{--переопределяем секцию правого сайтбара--}}
+@section('bar')
+    {!! $rightBar !!}
+@endsection

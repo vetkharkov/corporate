@@ -6,19 +6,21 @@ use Illuminate\Http\Request;
 
 use Corp\Repositories\SlidersRepository;
 use Corp\Repositories\PortfoliosRepository;
+use Corp\Repositories\ArticlesRepository;
 
 use Config;
 
 class IndexController extends SiteController
 {
 
-    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep)
+    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep, ArticlesRepository $a_rep)
     {
 
         parent::__construct(new \Corp\Repositories\MenusRepository(new \Corp\Menu));
 
         $this->s_rep = $s_rep;//слайдер
         $this->p_rep = $p_rep;//portfolio
+        $this->a_rep = $a_rep;//articles статьи
 
         $this->bar = 'right';//правый сайтбар
         $this->template = env('THEME') . '.index';//pink.index (views/pink/index.blade.php)
@@ -29,21 +31,33 @@ class IndexController extends SiteController
     {
         $portfolios = $this->getPortfolio();
 
-        $content = view(env('THEME').'.content')->with('portfolios',$portfolios)->render();
-        $this->vars = array_add($this->vars,'content', $content);
-
+        $content = view(env('THEME') . '.content')->with('portfolios', $portfolios)->render();
+        $this->vars = array_add($this->vars, 'content', $content);
 
 
         $sliderItems = $this->getSliders();//коллекция моделей слайдера
 
         $sliders = view(env('THEME') . '.slider')->with('sliders', $sliderItems)->render();
         $this->vars = array_add($this->vars, 'sliders', $sliders);
+
+
+        $articles = $this->getArticles();
+        $this->contentRightBar = view(env('THEME') . '.indexBar')->with('articles', $articles)->render();
+
         return $this->renderOutput();//Вызов родительского метода рендера страницы
     }
 
-    protected function getPortfolio() {
+    protected function getArticles()
+    {
+        $articles = $this->a_rep->get(['title', 'created_at', 'img', 'alias'], Config::get('settings.home_articles_count'));
+//        dd($articles);
+        return $articles;
+    }
 
-        $portfolio = $this->p_rep->get('*',Config::get('settings.home_port_count'));
+    protected function getPortfolio()
+    {
+
+        $portfolio = $this->p_rep->get('*', Config::get('settings.home_port_count'));
 
         return $portfolio;
 

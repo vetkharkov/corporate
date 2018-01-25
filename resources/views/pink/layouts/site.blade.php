@@ -146,8 +146,9 @@
                 <!-- END CONTENT -->
 
                 <!-- START SIDEBAR -->
-
+                @yield('bar')
                 <!-- END SIDEBAR -->
+
                 <!-- START EXTRA CONTENT -->
 
                 <!-- END EXTRA CONTENT -->

@@ -24,3 +24,13 @@ Route::resource('portfolios', 'PortfolioController', [
     ]
 
 ]);
+
+Route::resource('articles','ArticlesController',[
+
+    'parametres'=>[
+
+        'articles' => 'alias'
+
+    ]
+
+]);

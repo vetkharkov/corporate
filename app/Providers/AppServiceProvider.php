@@ -5,6 +5,7 @@ namespace Corp\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use Blade;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,9 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // создаём новую директиву blade
-        // для присваивания значения переменной без отображения на странице
-        // @set($i,10)
+        /** создаём новую директиву blade
+        * для присваивания значения переменной без отображения на странице
+        * @set($i,10) ===> $i = 10
+        */
+
         Blade::directive('set', function ($exp) {
 
             list($name, $val) = explode(',', $exp);
@@ -26,6 +29,17 @@ class AppServiceProvider extends ServiceProvider
             return "<?php $name = $val ?>";
 
         });
+
+        /**
+         * Код для просмотра SQL запросов на страницах
+         */
+
+        DB::listen(function($query) {
+
+//            echo '<h1>'.$query->sql.'</h1>';
+
+        });
+
     }
 
     /**

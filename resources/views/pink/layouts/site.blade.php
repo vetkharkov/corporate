@@ -28,6 +28,8 @@
     <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : ''}}">
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : ''}}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title or 'Тема Pink Rio' }}</title>
 
     <!-- [favicon] begin -->
@@ -92,12 +94,14 @@
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/shortcodes.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.colorbox-min.js"></script> <!-- nav -->
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.tweetable.js"></script>
+{{-- Собственный скрипт --}}
+    <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/myscripts.js"></script>
 
 </head>
 <!-- END HEAD -->
 
 <!-- START BODY -->
-<body class="no_js responsive page-template-home-php stretched">
+<body class="no_js responsive {{ Route::currentRouteName() ==  'home' ? 'page-template-home-php' : ''}} stretched">
 
 <!-- START BG SHADOW -->
 <div class="bg-shadow">
@@ -141,16 +145,18 @@
     @yield('slider')
     <!-- END SLIDER -->
 
+        <div class="wrap_result"></div>
+
         <!-- START PRIMARY -->
         <div id="primary" class="sidebar-{{ isset($bar) ? $bar : 'no' }}">
             <div class="inner group">
                 <!-- START CONTENT -->
-                @yield('content')
-                <!-- END CONTENT -->
+            @yield('content')
+            <!-- END CONTENT -->
 
                 <!-- START SIDEBAR -->
-                @yield('bar')
-                <!-- END SIDEBAR -->
+            @yield('bar')
+            <!-- END SIDEBAR -->
 
                 <!-- START EXTRA CONTENT -->
 
@@ -160,8 +166,8 @@
         <!-- END PRIMARY -->
 
         <!-- START COPYRIGHT FOOTER -->
-                @yield('footer')
-        <!-- END COPYRIGHT FOOTER -->
+    @yield('footer')
+    <!-- END COPYRIGHT FOOTER -->
     </div>
     <!-- END WRAPPER -->
 </div>

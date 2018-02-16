@@ -1,12 +1,9 @@
 <?php
 
-//Route::get('/', function () {
-//    return view('welcome');
+//Route::get('/clear', function() {
+//
+//    return "Кэш очищен.";
 //});
-//
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/', 'IndexController', [
     'only' => ['index'],//список методов в контроллере
@@ -34,3 +31,10 @@ Route::resource('articles','ArticlesController',[
     ]
 
 ]);
+
+Route::get('articles/cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'articlesCat']);
+
+
+Route::resource('comment','CommentController',['only'=>['store']]);
+
+Route::resource('comment','CommentController',['only'=>['store']]);

@@ -14,6 +14,7 @@ class SiteController extends Controller
     protected $s_rep;//свойство для хранения класса объекта слайдера репозитория
     protected $a_rep;//свойство для хранения класса объекта articles репозитория
     protected $m_rep;//свойство для хранения класса объекта меню репозитория
+    protected $c_rep;//свойство для хранения объекта класса CommentsRepository
 
     protected $keywords;
     protected $meta_desc;

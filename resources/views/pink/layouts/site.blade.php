@@ -94,14 +94,14 @@
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/shortcodes.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.colorbox-min.js"></script> <!-- nav -->
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.tweetable.js"></script>
-{{-- Собственный скрипт --}}
+    {{-- Собственный скрипт --}}
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/myscripts.js"></script>
 
 </head>
 <!-- END HEAD -->
 
 <!-- START BODY -->
-<body class="no_js responsive {{ Route::currentRouteName() ==  'home' ? 'page-template-home-php' : ''}} stretched">
+<body class="no_js responsive {{ (Route::currentRouteName() ==  'home') || (Route::currentRouteName() == 'portfolios.index') || (Route::currentRouteName() == 'portfolios.show') ? 'page-template-home-php' : ''}} stretched">
 
 <!-- START BG SHADOW -->
 <div class="bg-shadow">
@@ -116,8 +116,10 @@
 
                 <!-- START LOGO -->
                 <div id="logo" class="group">
-                    <a href="index.html" title="Pink Rio"><img src="{{ asset(env('THEME')) }}/images/logo.png"
-                                                               title="Pink Rio" alt="Pink Rio"/></a>
+                    <a href="index.html" title="Pink Rio">
+                        <img src="{{ asset(env('THEME')) }}/images/logo.png"
+                             title="Pink Rio" alt="Pink Rio"/>
+                    </a>
                 </div>
                 <!-- END LOGO -->
 
@@ -144,6 +146,29 @@
         <!-- START SLIDER -->
     @yield('slider')
     <!-- END SLIDER -->
+
+    @if(Route::currentRouteName() == 'portfolios.index')
+        <!-- START PAGE META -->
+            <div id="page-meta">
+                <div class="inner group">
+                    <h3>Welcome to my portfolio page</h3>
+                    <h4>... i hope you enjoy my works</h4>
+                </div>
+            </div>
+            <!-- END PAGE META -->
+    @endif
+
+    @if(Route::currentRouteName() == 'contacts')
+        <!-- START PAGE META -->
+            <div id="page-meta">
+                <div class="inner group">
+                    <h3>...Say Hello! :)</h3>
+                    <h4>Get in touch with Pink Rio team</h4>
+                </div>
+            </div>
+            <!-- END PAGE META -->
+        @endif
+
 
         <div class="wrap_result"></div>
 

@@ -7,5 +7,6 @@ return [
     'paginate'            => 2,//колличечтво отображаемых элементов(статей) на странице
     'recent_comments' => 3,
     'recent_portfolios' => 3,
+    'other_portfolios' => 8
 
 ];

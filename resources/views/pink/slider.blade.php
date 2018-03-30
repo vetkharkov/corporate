@@ -11,7 +11,7 @@
 
                 <li>
                     <div class="slide-holder"
-                         style="background:  url('{{ asset(env('THEME')) }}/images/{{ $slider->img }}') no-repeat center center"
+                         style="background:  url('{{ asset(config('settings.theme')) }}/images/{{ $slider->img }}') no-repeat center center"
                          style="height:483px;">
                         <div class="slide-content-holder inner" style="height:483px;">
                             @if($i%2 !== 0)
@@ -97,6 +97,6 @@
         </script>
         <div class="mobile-slider">
             <div class="slider fixed-image inner"><img
-                        src="{{ asset(env('THEME'))}}/images/slider-cycle/cycle-fixed.jpg" alt=""/></div>
+                        src="{{ asset(config('settings.theme'))}}/images/slider-cycle/cycle-fixed.jpg" alt=""/></div>
         </div>
 @endif

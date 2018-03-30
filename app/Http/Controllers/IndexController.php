@@ -24,22 +24,22 @@ class IndexController extends SiteController
 
         $this->bar = 'right';//правый сайтбар
 
-        $this->template = env('THEME') . '.index';//pink.index (views/pink/index.blade.php)
+        $this->template = config('settings.theme') . '.index';//pink.index (views/pink/index.blade.php)
 
     }
 
     public function index()
     {
-//        dd(env('THEME'));
+//        dd(config('settings.theme'));
         $portfolios = $this->getPortfolio();
 
-        $content = view(env('THEME') . '.content')->with('portfolios', $portfolios)->render();
+        $content = view(config('settings.theme') . '.content')->with('portfolios', $portfolios)->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
 
         $sliderItems = $this->getSliders();//коллекция моделей слайдера
 
-        $sliders = view(env('THEME') . '.slider')->with('sliders', $sliderItems)->render();
+        $sliders = view(config('settings.theme') . '.slider')->with('sliders', $sliderItems)->render();
         $this->vars = array_add($this->vars, 'sliders', $sliders);
 
         $this->keywords = 'ключевые слова';
@@ -49,7 +49,7 @@ class IndexController extends SiteController
 
 
         $articles = $this->getArticles();
-        $this->contentRightBar = view(env('THEME') . '.indexBar')->with('articles', $articles)->render();
+        $this->contentRightBar = view(config('settings.theme') . '.indexBar')->with('articles', $articles)->render();
 
         return $this->renderOutput();//Вызов родительского метода рендера страницы
     }

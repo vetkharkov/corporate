@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
 
         $('.wrap_result').css('color', 'green').text('Сохранение комментария').fadeIn(500, function () {
 
-            var data = $('#commentform').serializeArray();
+            var data = $('#commentform').serializeArray();//Массив объектов
 
             $.ajax({
 

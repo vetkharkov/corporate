@@ -5,6 +5,8 @@ namespace Corp\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+//use Illuminate\Routing\Router;
+
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -23,10 +25,24 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+//        $router - это объект используемого маршрута
+
         Route::pattern('alias','[\w-]+');
         Route::pattern('cat_alias','[\w-]+');
 
         parent::boot();
+
+        Route::bind('article', function ($value) {
+            return \Corp\Article::where('alias',$value)->first();
+        });
+
+        Route::bind('menus', function ($value) {
+            return \Corp\Menu::where('id',$value)->first();
+        });
+
+        Route::bind('users', function ($value) {
+            return \Corp\User::find($value);
+        });
     }
 
     /**

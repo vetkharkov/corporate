@@ -7,7 +7,7 @@
             @foreach($articles as $article)
 
                 <div class="hentry-post group">
-                    <div class="thumb-img"><img src="{{asset(env('THEME'))}}/images/articles/{{ $article->img->mini }}"
+                    <div class="thumb-img"><img src="{{asset(config('settings.theme'))}}/images/articles/{{ $article->img->mini }}"
                                                 alt="001" title="001"/></div>
                     <div class="text">
                         <a href="{{ route('articles.show',['alias'=>$article->alias]) }}"
@@ -26,7 +26,7 @@
     <div class="widget-last widget text-image">
         <h3>Служба поддержки</h3>
         <div class="text-image" style="text-align:left">
-            <img src="{{asset(env('THEME'))}}/images/callus.gif" alt="Customer support"/>
+            <img src="{{asset(config('settings.theme'))}}/images/callus.gif" alt="Customer support"/>
         </div>
         <p>Телефон для связи</p>
     </div>

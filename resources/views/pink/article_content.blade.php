@@ -11,7 +11,7 @@
                 </h1>
                 <!-- post featured -->
                 <div class="image-wrap">
-                    <img src="{{ asset(env('THEME')) }}/images/articles/{{ $article->img->max }}" alt="00212"
+                    <img src="{{ asset(config('settings.theme')) }}/images/articles/{{ $article->img->max }}" alt="00212"
                          title="00212"/>
                 </div>
                 <p class="date">
@@ -90,7 +90,7 @@
                         @break
                     @endif
 
-                    @include(env('THEME').'.comment',['items' => $comments])
+                    @include(config('settings.theme').'.comment',['items' => $comments])
 
                 @endforeach
 
@@ -142,14 +142,25 @@
                     </p>
                 @endif
 
+                {{--@if(Auth::check())--}}
+                    {{--<input id="name" name="name"--}}
+                           {{--type="hidden" value="name_test"--}}
+                           {{--size="30"--}}
+                           {{--aria-required="true"/>--}}
+                    {{--<input id="email" name="email"--}}
+                           {{--type="hidden" value="email_test" size="30"--}}
+                           {{--aria-required="true"/>--}}
+                    {{--<input id="url" name="site" type="hidden"--}}
+                           {{--value="site_test" size="30"/>--}}
+                {{--@endif--}}
+
                 <p class="comment-form-comment">
                     <label for="comment">
-                        Your comment
+                        Ваш комментарий
                     </label>
                     <textarea id="comment"
                               name="text" cols="45"
                               rows="8">
-
                     </textarea>
                 </p>
                 <div class="clear"></div>

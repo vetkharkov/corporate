@@ -2,7 +2,7 @@
 	<div class="menu classic">
 		<ul id="nav" class="menu">
 			{{--$menu->roots() формирует только родительское меню--}}
-			@include(env('THEME').'.customMenuItems',['items'=>$menu->roots()])
+			@include(config('settings.theme').'.customMenuItems',['items'=>$menu->roots()])
 		</ul>
 	</div>
 @endif

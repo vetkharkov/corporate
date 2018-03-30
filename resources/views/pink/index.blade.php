@@ -1,5 +1,5 @@
 {{--наследуем главный макет layouts/site.blade.php--}}
-@extends(env('THEME').'.layouts.site')
+@extends(config('settings.theme').'.layouts.site')
 {{--переопределяем секцию навигации--}}
 @section('navigation')
 	{!! $navigation !!}
